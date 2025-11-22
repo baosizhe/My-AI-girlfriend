@@ -35,7 +35,8 @@
 4.  启动 `GirlfriendApplication.java`。
 5.  访问 `http://localhost:8080`。
 
-<img width="2856" height="1453" alt="image" src="https://github.com/user-attachments/assets/dbb83acb-b82e-40ab-825f-c46e539c4e02" />
+<img width="2872" height="1444" alt="image" src="https://github.com/user-attachments/assets/493c268b-2da9-4ace-9083-89885d9ea1e9" />
+
 <img width="2873" height="1446" alt="image" src="https://github.com/user-attachments/assets/928c475a-56a1-45b5-bb4f-6a33f06c99ef" />
 
 
