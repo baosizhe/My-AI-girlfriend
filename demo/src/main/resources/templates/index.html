@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My AI Girlfriend</title>
+    <style>
+        /* 简单的样式，让它看起来像个游戏 */
+        body { background: #fce4ec; font-family: sans-serif; display: flex; height: 100vh; margin: 0; }
+        .game-container { display: flex; width: 1000px; height: 700px; margin: auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+
+        /* --- 左侧立绘区修改 --- */
+        .left-panel {
+            flex: 1;
+            /* 保持原来的粉色背景，防止图片加载时露白 */
+            background: radial-gradient(circle at 50% 30%, #fff0f3, #ffdae3);
+            /* 改动1：设置为居中对齐，而不是底部对齐 */
+            display: flex;
+            align-items: center;     /* 垂直居中 */
+            justify-content: center; /* 水平居中 */
+            overflow: hidden;        /* 隐藏超出的部分 */
+            position: relative;
+        }
+
+        .left-panel img {
+            /* 改动2：强制让图片撑满整个容器 */
+            width: 100%;
+            height: 100%;
+
+            /* 改动3：关键属性！让图片像封面一样填充，多余部分裁掉，不变形 */
+            object-fit: cover;
+
+            /* 改动4：对齐图片的顶部中心，保证脸不被裁掉 */
+            object-position: top center;
+
+            /* 保持原来的阴影和过渡效果 */
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+            transition: all 0.3s ease-in-out;
+        }
+
+        .right-panel { flex: 1; display: flex; flex-direction: column; padding: 20px; }
+        .chat-box { flex: 1; overflow-y: auto; padding: 10px; border-bottom: 1px solid #eee; }
+
+        .msg { margin: 10px 0; padding: 10px 15px; border-radius: 10px; max-width: 80%; font-size: 15px; }
+        .msg.user { background: #81ecec; align-self: flex-end; margin-left: auto; }
+        .msg.assistant { background: #ffeaa7; align-self: flex-start; }
+
+        .input-area { margin-top: 15px; display: flex; gap: 10px; }
+        input { flex: 1; padding: 15px; border: 2px solid #ddd; border-radius: 30px; outline: none; }
+        button { padding: 0 25px; border: none; background: #ff7675; color: white; border-radius: 30px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #fab1a0; }
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div class="left-panel">
+        <img th:src="${currentImg}" alt="女友立绘">
+    </div>
+
+    <div class="right-panel">
+        <div class="chat-box" id="scroller">
+            <div th:each="msg : ${chatHistory}"
+                 th:class="'msg ' + ${msg.role}"
+                 th:text="${msg.content}">
+            </div>
+        </div>
+
+        <form action="/chat" method="post" class="input-area">
+            <input type="text" name="userText" placeholder="和她说说话..." autocomplete="off" autofocus>
+            <button type="submit">发送</button>
+        </form>
+    </div>
+</div>
+<script>
+    // 保持聊天框在最底部
+    var element = document.getElementById("scroller");
+    element.scrollTop = element.scrollHeight;
+</script>
+<audio id="girlVoice" th:if="${audioData != null}" autoplay>
+    <source th:src="'data:audio/mp3;base64,' + ${audioData}" type="audio/mp3">
+</audio>
+
+<script>
+    // 保持聊天框在最底部
+    var element = document.getElementById("scroller"); // 或者是你聊天框的ID
+    if(element) element.scrollTop = element.scrollHeight;
+
+    // 尝试自动播放
+    var audio = document.getElementById("girlVoice");
+    if (audio) {
+        audio.play().catch(e => console.log("自动播放被拦截，需用户交互"));
+    }
+</script>
+</body>
+</html>
