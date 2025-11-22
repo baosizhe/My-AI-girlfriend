@@ -69,17 +69,17 @@ public class GirlfriendController {
         // 如果 Session 为空（重启过或新用户）
         if (session.getAttribute("history") == null) {
 
-            // 📖 2. 尝试从硬盘加载记忆
+            // 2. 尝试从硬盘加载记忆
             List<Message> history = loadMemoryFromFile();
 
             if (!history.isEmpty()) {
-                // ✅ 找到了记忆：恢复聊天记录
+                // 找到了记忆：恢复聊天记录
                 session.setAttribute("history", history);
                 // 恢复最后一张表情
                 String lastEmotion = findLastEmotion(history);
                 session.setAttribute("currentImg", "/images/" + lastEmotion + ".jpg");
             } else {
-                // ❌ 没找到记忆（全新开始）：初始化
+                //  没找到记忆（全新开始）：初始化
                 history = new ArrayList<>();
                 history.add(Message.builder().role(Role.SYSTEM.getValue()).content(SYSTEM_PROMPT).build());
 
@@ -158,7 +158,7 @@ public class GirlfriendController {
         return "redirect:/";
     }
 
-    // 🗑️ 新增：重置功能（访问 /reset 即可清空记忆）
+    // 新增：重置功能（访问 /reset 即可清空记忆）
     @GetMapping("/reset")
     public String reset(HttpSession session) {
         session.invalidate(); // 清空 Session
@@ -166,7 +166,6 @@ public class GirlfriendController {
         return "redirect:/";
     }
 
-    // ✨【知甜语音】我帮你改回了最甜的“知甜”，这个兼容性最好
     private String generateAudio(String text) {
         try {
             // 确保 API Key 被设置
@@ -174,7 +173,7 @@ public class GirlfriendController {
 
             SpeechSynthesizer synthesizer = new SpeechSynthesizer();
             SpeechSynthesisParam param = SpeechSynthesisParam.builder()
-                    .model("sambert-zhitian-v1")  // 知甜：甜美系女友
+                    .model("sambert-zhiqi-v1")  // 知甜：甜美系女友
                     .text(text)
                     .format(SpeechSynthesisAudioFormat.MP3)
                     .sampleRate(48000)
