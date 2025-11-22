@@ -149,7 +149,7 @@ public class GirlfriendController {
             session.setAttribute("history", history);
             session.setAttribute("currentImg", "/images/" + emotion + ".jpg");
 
-            // 💾 3. 关键：聊完一句立刻存盘
+            // 3. 关键：聊完一句立刻存盘
             saveMemoryToFile(history);
 
         } catch (Exception e) {
