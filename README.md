@@ -11,6 +11,13 @@
 * **🖼️ 动态立绘**：前端根据 AI 的情绪标签，自动切换 5 种不同的女友表情（Happy, Sad, Angry, Shy, Normal）。
 * **🔊 语音交互**：集成了阿里云 TTS（CosyVoice/Sambert），她能开口对你说话！
 * **💘 沉浸人设**：预设了“温柔运动系初恋”的 Prompt，无论是撒娇还是吃醋，都非常有真实感。
+* **🧠 永久记忆系统 (Long-term Memory)
+* **自动存档**：聊天记录会实时保存到本地的 `girlfriend_memory.json` 文件中。
+* **断电不忘**：即使重启服务器或关闭电脑，下次打开时，她依然记得你的名字和你们之前的故事。
+
+### 4. ↺ 重置机制
+* 界面内置“重新开始”按钮。
+* 点击即可一键清空记忆，重置回初次见面的状态，开启一段新的恋情。
 
 ## 🛠️ 技术栈
 
@@ -32,6 +39,7 @@
         ```
 3.  准备图片素材：
     * 在 `src/main/resources/static/images/` 下放入 5 张表情图片（normal.jpg, happy.jpg, etc.）。
+    * 我已经准备好了，如果不满意，可以随时替换
 4.  启动 `GirlfriendApplication.java`。
 5.  访问 `http://localhost:8080`。
 
