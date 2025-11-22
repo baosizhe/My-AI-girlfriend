@@ -35,7 +35,10 @@
 4.  启动 `GirlfriendApplication.java`。
 5.  访问 `http://localhost:8080`。
 
+<img width="2856" height="1453" alt="image" src="https://github.com/user-attachments/assets/dbb83acb-b82e-40ab-825f-c46e539c4e02" />
+<img width="2873" height="1446" alt="image" src="https://github.com/user-attachments/assets/928c475a-56a1-45b5-bb4f-6a33f06c99ef" />
+
+
 ## 🤝 贡献
-![Uploading image.png…]()
 
 欢迎提交 Issue 或 Pull Request 来完善小汐的功能！
