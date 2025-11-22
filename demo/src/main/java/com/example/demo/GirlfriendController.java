@@ -107,10 +107,10 @@ public class GirlfriendController {
             Constants.apiKey = this.apiKey;
             Generation gen = new Generation();
             GenerationParam param = GenerationParam.builder()
-                    .model("qwen-turbo")
-                    .messages(history)
-                    .resultFormat(GenerationParam.ResultFormat.MESSAGE)
-                    .build();
+                    。model("qwen-turbo")
+                    。messages(history)
+                    。resultFormat(GenerationParam.ResultFormat.MESSAGE)
+                    。build();
 
             GenerationResult result = gen.call(param);
             String response = result.getOutput().getChoices().get(0).getMessage().getContent();
@@ -141,20 +141,16 @@ public class GirlfriendController {
         }
         return "redirect:/";
     }
-    // ✨【尝试升级版】调用 Qwen-TTS (芊悦/Cherry)
-    // 备用的旧版生成方法（防止新版失败）
-    // ✨【旗舰升级版】调用 CosyVoice 大模型 (音色：芊悦)
-    // ✨【最终稳定版】使用“知甜” (甜美系女友音)
     private String generateAudio(String text) {
     try {
         Constants.apiKey = this.apiKey;
         SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         SpeechSynthesisParam param = SpeechSynthesisParam.builder()
-                .model("sambert-zhiqi-v1")  // 使用有效的模型名称
-                .text(text)
-                .format(SpeechSynthesisAudioFormat.MP3)
-                .sampleRate(48000)
-                .build();
+                。model("sambert-zhiqi-v1")  // 使用有效的模型名称
+                。text(text)
+                。format(SpeechSynthesisAudioFormat.MP3)
+                。sampleRate(48000)
+                。build();
         ByteBuffer audioBuffer = synthesizer.call(param);
         if (audioBuffer != null) {
             byte[] bytes = new byte[audioBuffer.remaining()];
